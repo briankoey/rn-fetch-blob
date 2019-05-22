@@ -21,9 +21,9 @@ import java.util.ArrayList;
 import android.net.Uri;
 import expolib_v1.okhttp3.MediaType;
 import expolib_v1.okhttp3.RequestBody;
-import okio.BufferedSink;
+import expolib_v1.okio.BufferedSink;
 
-class RNFetchBlobBody extends RequestBody{
+class RNFetchBlobBody extends RequestBody {
 
     private InputStream requestStream;
     private long contentLength = 0;
@@ -115,9 +115,9 @@ class RNFetchBlobBody extends RequestBody{
     }
 
     @Override
-    public void writeTo(@NonNull BufferedSink sink) {
+    public void writeTo(expolib_v1.okio.BufferedSink bufferedSink) throws IOException {
         try {
-            pipeStreamToSink(requestStream, sink);
+            pipeStreamToSink(requestStream, bufferedSink);
         } catch(Exception ex) {
             RNFetchBlobUtils.emitWarningEvent(ex.getLocalizedMessage());
             ex.printStackTrace();
